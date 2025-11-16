@@ -877,6 +877,8 @@ class SmallWebRTCTransport(BaseTransport):
     with support for application messaging and connection event handling.
     """
 
+    WebRTCClient = SmallWebRTCClient
+
     def __init__(
         self,
         webrtc_connection: SmallWebRTCConnection,
@@ -901,7 +903,7 @@ class SmallWebRTCTransport(BaseTransport):
             on_client_disconnected=self._on_client_disconnected,
         )
 
-        self._client = SmallWebRTCClient(webrtc_connection, self._callbacks)
+        self._client = self.WebRTCClient(webrtc_connection, self._callbacks)
 
         self._input: Optional[SmallWebRTCInputTransport] = None
         self._output: Optional[SmallWebRTCOutputTransport] = None

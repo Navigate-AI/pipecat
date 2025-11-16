@@ -93,6 +93,8 @@ class SmallWebRTCRequestHandler:
       - Supporting both single and multiple connection modes.
     """
 
+    WebRTCConnection = SmallWebRTCConnection
+
     def __init__(
         self,
         ice_servers: Optional[List[IceServer]] = None,
@@ -203,7 +205,7 @@ class SmallWebRTCRequestHandler:
                     restart_pc=request.restart_pc or False,
                 )
             else:
-                pipecat_connection = SmallWebRTCConnection(ice_servers=self._ice_servers)
+                pipecat_connection = self.WebRTCConnection(ice_servers=self._ice_servers)
                 await pipecat_connection.initialize(sdp=request.sdp, type=request.type)
 
                 @pipecat_connection.event_handler("closed")
