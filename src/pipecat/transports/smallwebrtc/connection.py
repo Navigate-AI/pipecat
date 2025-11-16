@@ -211,6 +211,8 @@ class SmallWebRTCConnection(BaseObject):
     for real-time audio/video communication.
     """
 
+    WebRTCTrack = SmallWebRTCTrack
+
     def __init__(
         self,
         ice_servers: Optional[Union[List[str], List[IceServer]]] = None,
@@ -659,7 +661,7 @@ class SmallWebRTCConnection(BaseObject):
             return None
 
         receiver = transceivers[AUDIO_TRANSCEIVER_INDEX].receiver
-        audio_track = SmallWebRTCTrack(receiver) if receiver else None
+        audio_track = self.WebRTCTrack(receiver) if receiver else None
         self._track_map[AUDIO_TRANSCEIVER_INDEX] = audio_track
         return audio_track
 
@@ -681,7 +683,7 @@ class SmallWebRTCConnection(BaseObject):
             return None
 
         receiver = transceivers[VIDEO_TRANSCEIVER_INDEX].receiver
-        video_track = SmallWebRTCTrack(receiver) if receiver else None
+        video_track = self.WebRTCTrack(receiver) if receiver else None
         self._track_map[VIDEO_TRANSCEIVER_INDEX] = video_track
         return video_track
 
@@ -703,7 +705,7 @@ class SmallWebRTCConnection(BaseObject):
             return None
 
         receiver = transceivers[SCREEN_VIDEO_TRANSCEIVER_INDEX].receiver
-        video_track = SmallWebRTCTrack(receiver) if receiver else None
+        video_track = self.WebRTCTrack(receiver) if receiver else None
         self._track_map[SCREEN_VIDEO_TRANSCEIVER_INDEX] = video_track
         return video_track
 
