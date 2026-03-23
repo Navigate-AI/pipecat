@@ -16,7 +16,7 @@ gRPC API for high-quality speech synthesis.
 
 import warnings
 
-from pipecat.services.nvidia.tts import NVIDIA_TTS_TIMEOUT_SECS, NvidiaTTSService
+from pipecat.services.nvidia.tts import NvidiaTTSService
 
 with warnings.catch_warnings():
     warnings.simplefilter("always")
@@ -30,4 +30,3 @@ with warnings.catch_warnings():
 
 RivaTTSService = NvidiaTTSService
 FastPitchTTSService = NvidiaTTSService
-RIVA_TTS_TIMEOUT_SECS = NVIDIA_TTS_TIMEOUT_SECS
